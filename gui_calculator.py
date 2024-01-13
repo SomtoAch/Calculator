@@ -1,7 +1,9 @@
 from tkinter import *
 
+#the value in the calculation field, in string format. By 
 expression = "" 
 
+#function that takes as input the value of the pressed button, updates the expression variable with the pressed button, then sets the calculation variable to this expression
 def press(num): 
 	global expression 
 
@@ -9,16 +11,16 @@ def press(num):
  
 	calculation.set(expression) 
 
-
+#function that evaluates the expression that has been formed, sets the calculation variable to the calculated value, then clears the expression variable
 def equalpress(): 
 
 	try: 
 
 		global expression
 
-		total = str(eval(expression)) 
+		total = str(eval(expression))
 
-		calculation.set(total) 
+		calculation.set(total)
 
 		expression = "" 
 
@@ -27,7 +29,7 @@ def equalpress():
 		calculation.set(" error ") 
 		expression = "" 
 
-
+#clears bothe the expression string and the calculation variable
 def clear(): 
 	global expression 
 	expression = "" 
@@ -38,16 +40,24 @@ if __name__=='__main__':
 
     calculator = Tk()
 
+    #sets calculator background to white and changes the window title
     calculator.configure(background='white')
     calculator.title("Calculator v1")
 	
+    #instantiates the Calculation variable, the value of this variable is what is displayed in the entry field
     calculation = StringVar() 
 
+    # By using a PhotoImage, I can set the dimensions of the buttons in pixels instead of text units, by setting the dimensions of pixelVirtual to a 1px square, and the specifying in the Buttons' options how many pixelVirtuals the buttton should be
     pixelVirtual = PhotoImage(width=1, height=1)
 
+    # Grid placement allows me to place the buttons in a 4x5 grid
+    # Row values range from 0 to 5
+	
+    #the text in calculation_field is whatever the textvariable calculation is equal to. We can change the textvariable with calculation.set()
     calculation_field = Entry(calculator, textvariable=calculation)
     calculation_field.grid(row=0, column=0, columnspan=4, ipadx=103, ipady=15)
-
+	
+    #button text is silver, button body is black, text font is Heletica and font size is 20 pixels. compund='c' centres text, command is what is to be executed when button is clicked
     button0 = Button(calculator, text='0', fg='silver', bg='black', font=('Helvetica', -20), height=60, width=75, image=pixelVirtual, compound="c", command=lambda: press(0))
     button0.grid(row=1, column=0)
 
