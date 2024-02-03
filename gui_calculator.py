@@ -1,35 +1,38 @@
 from tkinter import *
 
-#the value in the calculation field, in string format. By 
+#the value in the calculation field, in string format.
 expression = "" 
 
-#function that takes as input the value of the pressed button, updates the expression variable with the pressed button, then sets the calculation variable to this expression
+#function that takes as input the value of the pressed button, updates the expression variable with the pressed button, then sets the calculation variable to this expression.
+#Bear in mind that expresspion is a string, calculation is a string variable, which is turned to a mathemamatic calculation using eval
 def press(num): 
 	global expression 
 
-	expression = expression + str(num) 
+	expression = expression + str(num)
  
 	calculation.set(expression) 
 
 #function that evaluates the expression that has been formed, sets the calculation variable to the calculated value, then clears the expression variable
 def equalpress(): 
 
-	try: 
+    try: 
 
-		global expression
+        global expression
 
-		total = str(eval(expression))
+        total = str(eval(expression))
 
-		calculation.set(total)
+        calculation.set(total)
 
-		expression = str(total) 
+        #This makes sure the calculated value stays in the calculator display, and when calculation is set it takes in the calculation 
+        expression = str(total) 
 
-	except: 
+    #except clause triggered when expression does not make mathemical sense, and cannot be evaluated with eval
+    except: 
 
-		calculation.set(" error ") 
-		expression = "" 
+        calculation.set(" error ") 
+        expression = "" 
 
-#clears bothe the expression string and the calculation variable
+#clears both the expression string and the calculation variable
 def clear(): 
 	global expression 
 	expression = "" 
@@ -44,7 +47,7 @@ if __name__=='__main__':
     calculator.configure(background='white')
     calculator.title("Calculator v1")
 	
-    #instantiates the Calculation variable, the value of this variable is what is displayed in the entry field
+    #instantiates the Calculation variable, the value of this variable is calculated with eval, and every time a button is pressed this variable is set to whatever is in the calculator display (the value of the expression variable)
     calculation = StringVar() 
 
     # By using a PhotoImage, I can set the dimensions of the buttons in pixels instead of text units, by setting the dimensions of pixelVirtual to a 1px square, and the specifying in the Buttons' options how many pixelVirtuals the buttton should be
@@ -57,7 +60,7 @@ if __name__=='__main__':
     calculation_field = Entry(calculator, textvariable=calculation)
     calculation_field.grid(row=0, column=0, columnspan=4, ipadx=103, ipady=15)
 	
-    #button text is silver, button body is black, text font is Heletica and font size is 20 pixels. compund='c' centres text, command is what is to be executed when button is clicked
+    #button text is silver, button body is black, text font is Helvetica and font size is 20 pixels. compund='c' centres text, command is what is to be executed when button is clicked
     button0 = Button(calculator, text='0', fg='silver', bg='black', font=('Helvetica', -20), height=60, width=75, image=pixelVirtual, compound="c", command=lambda: press(0))
     button0.grid(row=1, column=0)
 
