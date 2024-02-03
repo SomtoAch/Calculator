@@ -1,3 +1,7 @@
+#THIS CODE IS PROPERTY OF GeeksforGeeks, Sanchhaya Education Private Limited
+#Posted here https://www.geeksforgeeks.org/python-simple-gui-calculator-using-tkinter/
+#THIS IS CODE IS NOT MINE
+
 # Python program to create a simple GUI 
 # calculator using Tkinter 
  
