@@ -22,7 +22,7 @@ def equalpress():
 
 		calculation.set(total)
 
-		expression = "" 
+		expression = str(total) 
 
 	except: 
 
